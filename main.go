@@ -7,9 +7,22 @@ import (
 
 
 func main() {
-	start := time.Now()
-	primes := sieve_for_loop(100000)
+	primes_up_to := 10000
 
-	fmt.Println(len(primes))
-	fmt.Println(time.Since(start))
+	start := time.Now()
+	primes := sieve_for_loop(primes_up_to)
+	fmt.Println("Sieve in for-loop")
+	fmt.Println("==========================================")
+	fmt.Println("Number of primes below", primes_up_to, ":", len(primes))
+	fmt.Println("Calculation took:", time.Since(start))
+	fmt.Println()
+
+
+	start = time.Now()
+	primes = sieve_channels_in_slice(primes_up_to)
+	fmt.Println("Sieve in channel slice")
+	fmt.Println("==========================================")
+	fmt.Println("Number of primes below", primes_up_to, ":", len(primes))
+	fmt.Println("Calculation took:", time.Since(start))
+	fmt.Println()
 }
