@@ -7,7 +7,7 @@ import (
 
 
 func main() {
-	primes_up_to := 10000
+	primes_up_to := 200000
 
 	start := time.Now()
 	primes := sieve_for_loop(primes_up_to)

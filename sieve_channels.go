@@ -2,7 +2,7 @@ package main
 
 
 func generate_channel(max int) <-chan int {
-	c := make(chan int, 1000000)
+	c := make(chan int, 200000)
 
 	go func() {
 		for i := 2; i <= max; i++ {
@@ -15,7 +15,7 @@ func generate_channel(max int) <-chan int {
 }
 
 func new_channel_after(from <-chan int, primes *[]int) (<-chan int, bool) {
-	to := make(chan int, 20)
+	to := make(chan int, 100)
 
 	prime, ok := <-from // first one in the channel must be a prime
 
@@ -29,9 +29,10 @@ func new_channel_after(from <-chan int, primes *[]int) (<-chan int, bool) {
 
 	go func() {
 		for number := range from {
-			if prime_multiple < number {
+			for prime_multiple < number {
 				prime_multiple += prime
 			}
+			
 			if prime_multiple > number {
 				to <- number
 			}

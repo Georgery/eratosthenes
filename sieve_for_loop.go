@@ -26,7 +26,7 @@ func sieve_for_loop_runthrough(numbers []int, primes *[]int) []int {
 
 	for _, v := range numbers {
 
-		if multiple < v {
+		for multiple < v {
 			multiple += prime
 		}
 
